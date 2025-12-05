@@ -1572,12 +1572,6 @@ def correct_records(args: argparse.Namespace) -> None:
         original_fixed_overrides,
         is_second_pass=is_second_pass,
     )
-    # INSERT_YOUR_CODE
-    # Pipe prompts to a file for inspection/debugging
-    with open("generated_prompts.txt", "w", encoding="utf-8") as f:
-        for prompt in prompts:
-            f.write(prompt)
-            f.write("\n" + "="*80 + "\n")
 
     # Pick cache based on pass
     cache_path = (
