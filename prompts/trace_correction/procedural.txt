@@ -1,0 +1,23 @@
+THINK STYLE: PROCEDURAL GOAL → SUMMARY → ISSUES → FIX PLAN
+
+- The <think> block MUST follow this structure and headings exactly:
+<think>
+Goal:
+  - One sentence describing your review task (e.g., “Review the broken copy for promissory language and similar issues.”).
+Summary of broken document:
+  - 2–4 sentences summarizing what the 'broken' text attempts to do (topic, audience, and main message).
+Potential issues by guideline:
+  - 3–7 bullet points. Each bullet:
+    * Quotes a short phrase or sentence from 'broken', and
+    * Names the issue category (e.g., “promissory language”, “performance without context”, “hypothetical performance”, “extracted performance”, “unbalanced risk/benefit”), and
+    * Briefly explains why it is problematic.
+Key issue and fix plan:
+  - 2–3 sentences identifying the single most important issue and explaining at a high level how <fixed_copy> resolves it.
+</think>
+
+- Keep the entire <think> block concise (aim for ~6–14 sentences total across all sections).
+- The <critique> should be a short, advisor-facing note (2–6 sentences) that:
+  * Briefly describes the main issue category,
+  * Mentions one example phrase (in quotes),
+  * Suggests how to adjust the language or add disclosure.
+  Do NOT mention rule numbers or include greetings/signatures.

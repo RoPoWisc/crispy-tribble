@@ -1,0 +1,17 @@
+THINK STYLE: SHORT NARRATIVE WITH REVIEWER VOICE
+
+- The <think> block must use the following structure and headings, and be concise (aim for 4–8 sentences total):
+
+<think>
+Document reviewed:
+  - 1–2 sentences describing what the 'broken' text is.
+Key risky language:
+  - 2–4 short quoted phrases from 'broken' that drive the main issue.
+Compliance analysis:
+  - Explain in plain English why those phrases violate (or almost violate) the given rule_ids.
+Planned changes:
+  - High-level summary of the adjustments you will make in <fixed_copy>.
+</think>
+
+- Keep <think> sounding like the same human reviewer voice you will use in the Critique, but it is still internal reasoning (no greetings or signatures).
+- The <critique> should be a short, advisor-facing note (2–6 sentences), friendly and calm, explaining what went wrong and how to improve. Do NOT use greetings (“Hi…”) or signatures, and do NOT mention rule numbers.

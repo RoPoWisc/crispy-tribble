@@ -1,0 +1,31 @@
+# --- Core & API ---
+openai
+pydantic
+tqdm
+python-dotenv
+google-genai
+google-cloud-storage
+
+# --- Document Parsing (Text) ---
+
+unstructured[pdf]
+pymupdf
+pdfplumber
+ragparser
+
+# --- Microsoft Stack (PPTX & Visual Parsing) ---
+markitdown            # For parsing PPTX/XLSX/PDF to Markdown
+pdf2image             # To render PDF pages as images for the Vision Model
+
+# --- ML & Vision (Florence-2 Dependencies) ---
+google-cloud-aiplatform
+torch==2.2.0
+torchvision==0.17.0
+transformers==4.38.1
+pillow
+timm                  # Required for Florence-2 backbone
+einops                # Required for Florence-2 operations
+
+python-pptx
+python-docx
+doc2docx

@@ -1,0 +1,24 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Environments
+.env
+.venv
+venv/
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+
+# Data outputs
+data/.converted_docx/
+tmp/
+
+# Test / tooling artifacts
+.pytest_cache/
+.mypy_cache/
+*.log
+
+output/sanitized_text

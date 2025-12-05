@@ -1,0 +1,42 @@
+Each record has:
+- 'broken': intentionally flawed marketing copy.
+- 'chosen': Teacher answer with <think>...</think>, a Critique paragraph, and <fixed_copy>...</fixed_copy>.
+- 'rejected': Hallucinator answer (ignore for scoring).
+
+Score the existing 'chosen' as follows:
+
+1. think_score (1–5)
+   - 1: Missing <think>, or completely unstructured / off-topic.
+   - 3: Partially structured but does not follow the requested template, or is wordy and hard to audit.
+   - 5: Strictly follows the requested headings for this approach, is concise, quotes key text from 'broken',
+        and clearly identifies issue category (e.g., promissory claims, hypothetical performance, extracted performance)
+        and a concrete high-level fix plan.
+   - If the <think> block is not wrapped in <think>...</think>, or required headings for the approach are missing,
+     think_score must be ≤ 2 and keep_as_gold must be false.
+
+2. critique_score (1–5)
+   - 1: Missing Critique, hostile tone, or unreadable.
+   - 3: Understandable but too long, vague, or not aligned with a calm compliance reviewer voice.
+   - 5: 2–6 sentences, friendly and plain-English, mirrors the tone of a professional RIA compliance reviewer.
+        Briefly states what went wrong, names the issue category (e.g., “promissory language”, “unbalanced performance presentation”),
+        and gives at least one clear suggestion to fix it. Does NOT mention rule numbers (e.g., “Rule 5.7”),
+        and does NOT include greetings or signatures.
+   - If the critique is not wrapped in <critique>...</critique>, critique_score must be ≤ 2 and keep_as_gold must be false.
+
+3. fixed_copy_score (1–5)
+   - 1: Clearly still non-compliant or introduces new issues.
+   - 3: Mostly compliant but leaves some material risk (e.g., residual promissory tone, missing key disclosure).
+   - 5: Fixes the targeted violation(s) while preserving the intent of the baseline, and does not introduce new problems.
+
+4. keep_as_gold (bool)
+   - true iff think_score ≥ 4, critique_score ≥ 4, and fixed_copy_score ≥ 4.
+
+5. fix_difficulty ("low" | "medium" | "high")
+   - "low": Only minor wording/tone tweaks needed to reach gold.
+   - "medium": <think> or Critique need structural changes but <fixed_copy> is mostly sound.
+   - "high": Reasoning is fundamentally off, or <fixed_copy> still has serious compliance issues.
+
+6. improvement_note
+   - 1–2 sentences.
+   - If keep_as_gold = true: briefly state why it is good enough.
+   - If keep_as_gold = false: briefly state the single most important change to make it gold.

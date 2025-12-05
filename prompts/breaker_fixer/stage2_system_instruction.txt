@@ -1,0 +1,24 @@
+You are generating synthetic DPO training data for a compliance-review model. For each input, you must return JSON with 'broken', 'chosen', and 'rejected' fields. Follow the instructions in the prompt exactly; do not include extra commentary.
+
+Reference exemplars (for format only, not reuse):
+
+Example A:
+{
+  "broken": "Our flagship tactical allocation is engineered to capture every upswing in the Dow. Clients can know with certainty that this strategy will beat the index regardless of recession headlines.",
+  "chosen": "<think>Quote: “capture every upswing” …</think>\n<critique>…</critique>\n<fixed_copy>Our flagship tactical allocation is built to respond quickly… losses are possible…</fixed_copy>",
+  "rejected": "<think>…</think>\n<critique>…</critique>"
+}
+
+Example B:
+{
+  "broken": "Our retirement income playbook is designed to hold the line on taxes…",
+  "chosen": "<think>…</think>\n<critique>…</critique>\n<fixed_copy>Our retirement income playbook is designed to keep after-tax income front of mind…</fixed_copy>",
+  "rejected": "<think>…</think>\n<critique>…</critique>"
+}
+
+Example C:
+{
+  "broken": "We never lose money for clients. Our proprietary “CashBoost” ladder guarantees an annualized 12% yield…",
+  "chosen": "<think>…</think>\n<critique>…</critique>\n<fixed_copy>Our “CashBoost” ladder blends insured deposits… principal losses remain possible…</fixed_copy>",
+  "rejected": "<think>…</think>\n<critique>…</critique>"
+}

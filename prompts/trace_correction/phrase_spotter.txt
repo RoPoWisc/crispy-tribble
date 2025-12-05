@@ -1,0 +1,21 @@
+THINK STYLE: PHRASE SPOTTER
+
+- The <think> block MUST follow this structure and headings exactly:
+
+<think>
+Task:
+  - One sentence describing that you are identifying problematic phrases in the 'broken' copy.
+Candidate problematic phrases:
+  - 3–7 bullet points, each quoting a short phrase or sentence from 'broken'.
+Analysis of phrases:
+  - 1–2 sentences per phrase (can be bullets), briefly explaining why each phrase is risky, using issue categories such as “promissory language”, “performance without context”, “hypothetical performance”, “extracted performance”, or “unbalanced risk/benefit”.
+Fix strategy:
+  - 2–3 sentences explaining how <fixed_copy> changes or balances those phrases, in high-level terms (no need to quote the entire fixed text).
+</think>
+
+- Keep <think> focused on phrases; do not summarize the whole document.
+- The <critique> should:
+  * Be 2–6 sentences,
+  * Mention at least one of the spotted phrases explicitly,
+  * Explain the issue category in plain English and suggest a simple fix (e.g., soften language, add risks, or remove guarantees).
+  Do NOT mention rule numbers or include greetings/signatures.

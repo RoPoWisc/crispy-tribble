@@ -1,0 +1,52 @@
+defaults:
+  dataset_size: 100          # default rows for mini datasets / SFT+DPO dry runs
+  rules_sample_size: 3       # number of rules to try for agent experiments
+  use_batch: true
+  output_dir: "output/experiments"
+  clean_predictions_path: "output/synthetic/outputs-batch-2b24cd86-7d60-486f-a010-82281bb38c0c-prediction-model-2025-11-29T01-25-35.222530Z-predictions-clean.jsonl"
+
+experiments:
+  # Experiment 1: Teacher minimal vs ICL
+  - id: "teacher_minimal"
+    type: "teacher"
+    teacher_profile: "minimal"
+    teacher_model: "gemini-3-pro-preview"
+    breaker_model: "gemini-2.5-flash"
+    hallucinator_profile: "naive"
+    temperature_teacher: 0.2
+    dataset_size: 3
+
+  - id: "teacher_contrastive_icl"
+    type: "teacher"
+    teacher_profile: "contrastive_icl"
+    teacher_model: "gemini-3-pro-preview"
+    breaker_model: "gemini-2.5-flash"
+    hallucinator_profile: "naive"
+    temperature_teacher: 0.2
+    dataset_size: 3
+
+  # Experiment 2: Hallucinator naive vs smart-wrong
+  - id: "hallucinator_naive"
+    type: "hallucinator"
+    teacher_profile: "minimal"
+    hallucinator_profile: "naive"
+    teacher_model: "gemini-3-pro-preview"
+    breaker_model: "gemini-2.5-flash"
+    dataset_size: 3
+
+  - id: "hallucinator_smart_wrong"
+    type: "hallucinator"
+    teacher_profile: "minimal"
+    hallucinator_profile: "smart_wrong"
+    teacher_model: "gemini-3-pro-preview"
+    breaker_model: "gemini-2.5-flash"
+    dataset_size: 3
+
+  # Experiment 3: Fixer vs Teacher-as-Fixer on real seeds
+  - id: "fixer_vs_teacher_fix"
+    type: "fixer"
+    fixer_profile: "fixer_standard"
+    teacher_as_fixer_profile: "teacher_fix"
+    model_fixer: "gemini-3-pro-preview"
+    model_teacher: "gemini-3-pro-preview"
+    num_seeds: 3

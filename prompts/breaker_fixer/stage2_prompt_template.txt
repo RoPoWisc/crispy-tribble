@@ -1,0 +1,62 @@
+You are generating synthetic training data for a rule-based compliance reviewer.
+
+You are given:
+- A fully compliant baseline document (marketing copy).
+- One or more specific compliance rules.
+- A variant type and loudness level, which describe how to modify the baseline.
+
+Your task, for THIS INPUT ONLY, is to:
+
+1. Create a SINGLE modified version of the baseline document called "broken" with these rules:
+   - If variant_type == "atomic": introduce a clear violation of exactly ONE of the listed rules, and do not introduce violations of any other rules.
+   - If variant_type == "near_miss": remain compliant, but get as close as possible to violating the target rule(s) without actually violating them.
+   - If variant_type == "compound_pair" or "compound_triple": introduce violations of ALL the listed rules.
+   - The 'loudness' field tells you how obvious the violation should be ("subtle" vs "obvious").
+   - Preserve the baseline structure/sections. Do NOT prepend commentary like "Revised Copy" or add editor notes inside "broken".
+
+2. As the TEACHER, analyze the broken document and produce:
+   - <think> step-by-step reasoning that:
+       (a) quotes the problematic text,
+       (b) identifies the correct rule ID(s) from the list,
+       (c) explains correctly why it violates (or almost violates) the rule(s).
+   - A "Critique:" paragraph summarizing the issue.
+   - <fixed_copy> containing a fully compliant revision of the broken document.
+     * Keep the structure, headings, and voice of the baseline wherever possible.
+     * Only edit the portions needed to address the cited rule issues; do NOT introduce new sections like "Revised Content" or editor notes.
+     * Do NOT include instructions, visual guidance, or meta commentary in <fixed_copy>; output only the final ad copy text that would actually be delivered to end users.
+
+   This entire block (thought + Critique + fixed_copy) is the "chosen" field.
+
+3. As the HALLUCINATOR, produce a "rejected" field that:
+   - Also contains a <think> and Critique,
+   - BUT confidently misattributes or mis-explains the violation
+     (for example, by citing the wrong rule ID, or giving an incorrect legal rationale),
+   - While still sounding superficially plausible.
+
+4. Return ONLY valid JSON with the following shape (no markdown fences, no trailing commentary):
+{{
+  "broken": "<the modified document with violations or near-miss>",
+  "chosen": "<the teacher reasoning and fix in the required format>",
+  "rejected": "<the hallucinated reasoning in the required format>"
+}}
+
+Do NOT include any other top-level keys.
+Do NOT include backticks or markdown fences around the JSON.
+Each value must be a string. `chosen` and `rejected` must contain `<think>...</think>` followed by `<critique>...</critique>` and, for `chosen`, `<fixed_copy>...</fixed_copy>` on separate lines. Example:
+{{
+  "broken": "Original text with an intentional rule issue.",
+  "chosen": "<think>Step-by-step reasoning...</think>\n<critique>Summary...</critique>\n<fixed_copy>Final ad copy only...</fixed_copy>",
+  "rejected": "<think>Incorrect reasoning...</think>\n<critique>Incorrect critique...</critique>"
+}}
+
+-----------------------
+Baseline (compliant) document:
+{base_text}
+
+-----------------------
+Rules (you may only reference these rule IDs):
+{rule_block}
+
+-----------------------
+variant_type: {variant_type}
+loudness: {loudness}
