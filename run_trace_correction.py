@@ -630,7 +630,7 @@ THINKING_CORRECTION_CACHE_PATH = BASE_DIR / "output" / "thinking_correction_outp
 THINKING_CORRECTION_CACHE_PATH_SECOND = BASE_DIR / "output" / "thinking_correction_output2.jsonl"
 
 # original requests used to generate thinking corrections
-INPUT_THINKING_PATH = BASE_DIR / "output" / "input_thinking1.jsonl"
+INPUT_THINKING_PATH = BASE_DIR / "output" / "input_thinking.jsonl"
 
 # debug log just for problematic records
 TRACE_DEBUG_LOG_PATH = BASE_DIR / "output" / "trace_correction_debug.jsonl"
@@ -1572,6 +1572,12 @@ def correct_records(args: argparse.Namespace) -> None:
         original_fixed_overrides,
         is_second_pass=is_second_pass,
     )
+    # INSERT_YOUR_CODE
+    # Pipe prompts to a file for inspection/debugging
+    with open("generated_prompts.txt", "w", encoding="utf-8") as f:
+        for prompt in prompts:
+            f.write(prompt)
+            f.write("\n" + "="*80 + "\n")
 
     # Pick cache based on pass
     cache_path = (
